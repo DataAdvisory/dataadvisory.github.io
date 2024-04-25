@@ -1,1 +1,0 @@
-var json_locations_2 = {"type":"FeatureCollection","name":"locations_2","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[]}
