@@ -14,8 +14,8 @@
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
         #map {
-            width: 763px;
-            height: 666px;
+            width: 1536px;
+            height: 627px;
         }
         </style>
         <title></title>
@@ -35,8 +35,8 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="data/locations_2.js"></script>
-        <script src="data/locations_3.js"></script>
+        <script src="data/locations_4.js"></script>
+        <script src="data/locations_5.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -55,7 +55,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-46.1036673778496,168.48821039940478],[-40.81376406393284,176.84880610252964]]);
+        }).fitBounds([[-48.38906803888523,131.5543285634673],[-33.83237129504621,179.30007856346765]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -96,10 +96,23 @@
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
-        map.createPane('pane_GoogleMaps_0');
-        map.getPane('pane_GoogleMaps_0').style.zIndex = 400;
-        var layer_GoogleMaps_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-            pane: 'pane_GoogleMaps_0',
+        map.createPane('pane_LINZBasemaps_0');
+        map.getPane('pane_LINZBasemaps_0').style.zIndex = 400;
+        var layer_LINZBasemaps_0 = L.tileLayer('https://basemaps.linz.govt.nz/v1/tiles/aerial/WebMercatorQuad/{z}/{x}/{y}.webp?api=c01hvgt23bh78sfrk15ng7fpn7s', {
+            pane: 'pane_LINZBasemaps_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 18
+        });
+        layer_LINZBasemaps_0;
+        map.addLayer(layer_LINZBasemaps_0);
+        map.createPane('pane_GoogleMaps_1');
+        map.getPane('pane_GoogleMaps_1').style.zIndex = 401;
+        var layer_GoogleMaps_1 = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleMaps_1',
             opacity: 1.0,
             attribution: '',
             minZoom: 1,
@@ -107,12 +120,25 @@
             minNativeZoom: 0,
             maxNativeZoom: 19
         });
-        layer_GoogleMaps_0;
-        map.addLayer(layer_GoogleMaps_0);
-        map.createPane('pane_EsriOcean_1');
-        map.getPane('pane_EsriOcean_1').style.zIndex = 401;
-        var layer_EsriOcean_1 = L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}', {
-            pane: 'pane_EsriOcean_1',
+        layer_GoogleMaps_1;
+        map.addLayer(layer_GoogleMaps_1);
+        map.createPane('pane_GoogleSatellite_2');
+        map.getPane('pane_GoogleSatellite_2').style.zIndex = 402;
+        var layer_GoogleSatellite_2 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleSatellite_2',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_GoogleSatellite_2;
+        map.addLayer(layer_GoogleSatellite_2);
+        map.createPane('pane_EsriOcean_3');
+        map.getPane('pane_EsriOcean_3').style.zIndex = 403;
+        var layer_EsriOcean_3 = L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}', {
+            pane: 'pane_EsriOcean_3',
             opacity: 1.0,
             attribution: '',
             minZoom: 1,
@@ -120,9 +146,9 @@
             minNativeZoom: 0,
             maxNativeZoom: 10
         });
-        layer_EsriOcean_1;
-        map.addLayer(layer_EsriOcean_1);
-        function pop_locations_2(feature, layer) {
+        layer_EsriOcean_3;
+        map.addLayer(layer_EsriOcean_3);
+        function pop_locations_4(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -135,9 +161,9 @@
             });
         }
 
-        function style_locations_2_0() {
+        function style_locations_4_0() {
             return {
-                pane: 'pane_locations_2',
+                pane: 'pane_locations_4',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -151,27 +177,27 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_locations_2');
-        map.getPane('pane_locations_2').style.zIndex = 402;
-        map.getPane('pane_locations_2').style['mix-blend-mode'] = 'normal';
-        var layer_locations_2 = new L.geoJson(json_locations_2, {
+        map.createPane('pane_locations_4');
+        map.getPane('pane_locations_4').style.zIndex = 404;
+        map.getPane('pane_locations_4').style['mix-blend-mode'] = 'normal';
+        var layer_locations_4 = new L.geoJson(json_locations_4, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_locations_2',
-            layerName: 'layer_locations_2',
-            pane: 'pane_locations_2',
-            onEachFeature: pop_locations_2,
+            dataVar: 'json_locations_4',
+            layerName: 'layer_locations_4',
+            pane: 'pane_locations_4',
+            onEachFeature: pop_locations_4,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_locations_2_0(feature));
+                return L.circleMarker(latlng, style_locations_4_0(feature));
             },
         });
-        bounds_group.addLayer(layer_locations_2);
-        map.addLayer(layer_locations_2);
-        function pop_locations_3(feature, layer) {
+        bounds_group.addLayer(layer_locations_4);
+        map.addLayer(layer_locations_4);
+        function pop_locations_5(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -204,9 +230,9 @@
             popup.setContent(updatedContent);
         }
 
-        function style_locations_3_0() {
+        function style_locations_5_0() {
             return {
-                pane: 'pane_locations_3',
+                pane: 'pane_locations_5',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -220,26 +246,26 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_locations_3');
-        map.getPane('pane_locations_3').style.zIndex = 403;
-        map.getPane('pane_locations_3').style['mix-blend-mode'] = 'normal';
-        var layer_locations_3 = new L.geoJson(json_locations_3, {
+        map.createPane('pane_locations_5');
+        map.getPane('pane_locations_5').style.zIndex = 405;
+        map.getPane('pane_locations_5').style['mix-blend-mode'] = 'normal';
+        var layer_locations_5 = new L.geoJson(json_locations_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_locations_3',
-            layerName: 'layer_locations_3',
-            pane: 'pane_locations_3',
-            onEachFeature: pop_locations_3,
+            dataVar: 'json_locations_5',
+            layerName: 'layer_locations_5',
+            pane: 'pane_locations_5',
+            onEachFeature: pop_locations_5,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_locations_3_0(feature));
+                return L.circleMarker(latlng, style_locations_5_0(feature));
             },
         });
-        bounds_group.addLayer(layer_locations_3);
-        map.addLayer(layer_locations_3);
+        bounds_group.addLayer(layer_locations_5);
+        map.addLayer(layer_locations_5);
         var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
